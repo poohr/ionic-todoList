@@ -60,7 +60,23 @@ function showAlert(header, subHeader, message) {
     alert.header = header;
     alert.subHeader = subHeader;
     alert.message = message;
-    alert.buttons = ['OK'];
+    alert.buttons = [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        },
+        {
+          text: 'OK',
+          handler: () => {
+            const todo = {};
+            todo.title = document.querySelector('#new-todo').value;
+            todo.due = new Date(2021, 9, 31);
+            todo.done = false;
+            todos.push(todo);
+            writeToDos(todos);
+          }
+        }
+      ];
     alert.inputs = [{
         name: 'todo',
         id: 'new-todo',
@@ -89,9 +105,11 @@ function writeToDos(todos) {
         // 完了したのは”doneList”へ
         doneList.appendChild(todoItem);
     } else {
+        // 完了してないものは”todoList”へ
         todoList.appendChild(todoItem);
     }
   }
 }
 
 writeToDos(todos);
+
