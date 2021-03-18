@@ -73,7 +73,7 @@ function showAlert(header, subHeader, message) {
             todo.due = new Date(2021, 9, 31);
             todo.done = false;
             todos.push(todo);
-            writeToDos(todos);
+            writeAllToDos(todos);
           }
         }
       ];
@@ -87,11 +87,17 @@ function showAlert(header, subHeader, message) {
     return alert.present();
 }
 
+// ToDoを追加する
+function writeAllToDos(todos) {
+ for(let todo of todos) {
+    addToDo(todo);
+    }
+} 
+
 // ToDoを追加する機能
-function writeToDos(todos) {
+function addToDo(todo) {
     const todoList = document.querySelector('#todos');
     const doneList = document.querySelector('#done');
- for(let todo of todos) {
     const todoItem = document.createElement('ion-item');
     todoItem.innerHTML = `
     <ion-label>
@@ -108,8 +114,7 @@ function writeToDos(todos) {
         // 完了してないものは”todoList”へ
         todoList.appendChild(todoItem);
     }
-  }
-}
+} 
 
-writeToDos(todos);
+writeAllToDos(todos);
 
