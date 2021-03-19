@@ -70,10 +70,10 @@ function showAlert(header, subHeader, message) {
           handler: () => {
             const todo = {};
             todo.title = document.querySelector('#new-todo').value;
-            todo.due = new Date(2021, 9, 31);
+            todo.due = new Date(document.querySelector('#new-due').value);
             todo.done = false;
             todos.push(todo);
-            writeAllToDos(todos);
+            addToDo(todo);
           }
         }
       ];
@@ -81,7 +81,13 @@ function showAlert(header, subHeader, message) {
         name: 'todo',
         id: 'new-todo',
         placeholder: 'やらなきゃいけないことは何?'
-    }];
+    },
+    {
+        name: 'due',
+        id: 'new-due',
+        type: 'date',
+    }
+];
 
     document.body.appendChild(alert);
     return alert.present();
